@@ -49,28 +49,17 @@ public class ListUsr<T> implements Iterable<T>, Serializable {
     }
 
     public void addAll(Collection<T> elements){
-        final int len = array.length;
-        array = Arrays.copyOf(array,array.length + elements.size());
-        for(int i = len;i<array.length;++i){
-            array[i] = elements.iterator().next();//TODO test
+        if(!elements.isEmpty()) {
+            final int len = array.length;
+            array = Arrays.copyOf(array, array.length + elements.size());
+            for (int i = len; i < array.length; ++i) {
+                array[i] = elements.iterator().next();//TODO test
+            }
         }
     }
-//    public void sort(Sorter sorter){
-//        sorter.sort(array);
-//    }
     public int getCapacity() {
         return array.length;
     }
-//    public int indexOf(T element) {
-//        int index = -1;
-//        for(int i = 0;i < array.length;++i) {
-//            if(array[i] == element) {
-//                index = i;
-//                break;
-//            }
-//        }
-//        return index;
-//    }
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(getClass().getSimpleName() + "\n");

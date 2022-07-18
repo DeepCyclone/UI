@@ -1,8 +1,10 @@
 package com.ispirer.presentation;
 
+import com.ispirer.model.Counter;
+import com.ispirer.model.ListUsr;
+
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyEvent;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -20,6 +22,8 @@ public class GUIRenderer {
     private JButton button;
     private JMenu languagesMenu;
     private JLabel label;
+
+    private JTextArea logTextArea;
     private ResourceBundle bundle;
 
     public void prepareGUI() {
@@ -28,6 +32,8 @@ public class GUIRenderer {
         initMenuBar();
         initLanguagesMenu();
         initButton();
+        initTextArea();
+        prepareTestData();
         mainFrame.setJMenuBar(menuBar);
         mainFrame.add(label);
         mainFrame.add(button);
@@ -37,40 +43,64 @@ public class GUIRenderer {
     private void rerenderText(Locale locale) {
         currentLocale = locale;
         bundle = ResourceBundle.getBundle(LOCALIZATION, locale);
-        mainFrame.setTitle(bundle.getString("application.title"));
-        russianLanguage.setText(bundle.getString("application.button.language.russian"));
-        englishLanguage.setText(bundle.getString("application.button.language.english"));
-        languagesMenu.setText(bundle.getString("application.button.language"));
-        button.setText(bundle.getString("application.button.testbutton"));
-        label.setText(bundle.getString("application.label.testlabel"));
+        mainFrame.setTitle(bundle.getString(RendererTextData.TITLE));
+        russianLanguage.setText(bundle.getString(RendererTextData.RUSSIAN_LANGUAGE));
+        englishLanguage.setText(bundle.getString(RendererTextData.ENGLISH_LANGUAGE));
+        languagesMenu.setText(bundle.getString(RendererTextData.LANGUAGE_CHANGER));
+        button.setText(bundle.getString(RendererTextData.ACTION_BUTTON));
+        label.setText(bundle.getString(RendererTextData.TEST_LABEL));
     }
 
     private void initMainFrame(){
-        mainFrame = new JFrame(ResourceBundle.getBundle(LOCALIZATION,currentLocale).getString("application.title"));
+        mainFrame = new JFrame(ResourceBundle.getBundle(LOCALIZATION,currentLocale).getString(RendererTextData.TITLE));
         mainFrame.setSize(600, 600);
         mainFrame.setLayout(new GridLayout(2, 1));
         mainFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
     private void initTextLabel(){
-        label = new JLabel(ResourceBundle.getBundle(LOCALIZATION,currentLocale).getString("application.label.testlabel"), SwingConstants.CENTER);
+        label = new JLabel(ResourceBundle.getBundle(LOCALIZATION,currentLocale).getString(RendererTextData.TEST_LABEL), SwingConstants.CENTER);
         label.setVisible(false);
     }
     private void initButton(){
-        button = new JButton(ResourceBundle.getBundle(LOCALIZATION,currentLocale).getString("application.button.testbutton"));
+        button = new JButton(ResourceBundle.getBundle(LOCALIZATION,currentLocale).getString(RendererTextData.ACTION_BUTTON));
         button.addActionListener(e->label.setVisible(!label.isVisible()));
     }
     private void initMenuBar(){
         menuBar = new JMenuBar();
     }
     private void initLanguagesMenu(){
-        languagesMenu = new JMenu(ResourceBundle.getBundle(LOCALIZATION,currentLocale).getString("application.button.language"));
-        russianLanguage = new JMenuItem(ResourceBundle.getBundle(LOCALIZATION,currentLocale).getString("application.button.language.russian"));//TODO radiobutton
+        languagesMenu = new JMenu(ResourceBundle.getBundle(LOCALIZATION,currentLocale).getString(RendererTextData.LANGUAGE_CHANGER));
+        russianLanguage = new JMenuItem(ResourceBundle.getBundle(LOCALIZATION,currentLocale).getString(RendererTextData.RUSSIAN_LANGUAGE));
         russianLanguage.addActionListener(event -> rerenderText(LOCALE_RU));
-        englishLanguage = new JMenuItem(ResourceBundle.getBundle(LOCALIZATION,currentLocale).getString("application.button.language.english"));
+        englishLanguage = new JMenuItem(ResourceBundle.getBundle(LOCALIZATION,currentLocale).getString(RendererTextData.ENGLISH_LANGUAGE));
         englishLanguage.addActionListener(event -> rerenderText(LOCALE_EN));
         languagesMenu.add(russianLanguage);
         languagesMenu.addSeparator();
         languagesMenu.add(englishLanguage);
         menuBar.add(languagesMenu);
+    }
+    private void initTextArea(){
+        logTextArea = new JTextArea();
+        JScrollPane scroll = new JScrollPane (logTextArea,
+                JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+        mainFrame.add(scroll);
+    }
+
+    private void prepareTestData(){
+        StringBuilder b = new StringBuilder();
+        for(int i = 0;i<10;++i) {
+            Counter c = new Counter();
+            b.append("Current object number " + c.getCurrentNumber() + "\n");
+        }
+        logTextArea.append(b.toString());
+        logTextArea.append(Counter.getObjects() + " \n");
+        ListUsr<String> userList = new ListUsr<>(3);
+        logTextArea.append("LIST TEST==============\n");
+        logTextArea.append("adding string,SIZE = " + userList.getCapacity() + "\n");
+        userList.add("T");
+        logTextArea.append("added string,SIZE = "  + userList.getCapacity() + "\n");
+        logTextArea.append("set string at index 0" + "\n");
+        userList.setElement(0,"XXX");
+        logTextArea.append("ALL ELEMENTS:" + userList + "\n");
     }
 }

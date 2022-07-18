@@ -4,9 +4,8 @@ import java.io.Serializable;
 import java.util.*;
 
 @SuppressWarnings("unchecked")
-public class ListUsr<T> implements Iterable<T>, Serializable {
-    private transient T[] array;
-    private int currentCapacity;
+public class ListUsr<T> implements Iterable<T> {
+    private T[] array;
     public static final int DEFAULT_CAPACITY = 5;
     public ListUsr() {
         this(DEFAULT_CAPACITY);

@@ -1,24 +1,22 @@
 package com.ispirer.model;
 
+import com.ispirer.listener.EventManager;
+
 import java.io.Serializable;
 import java.util.*;
 
 @SuppressWarnings("unchecked")
-public class ListUsr<T> implements Iterable<T>, Serializable {
-    private transient T[] array;
-    private int currentCapacity;
+public class ListUsr<T> implements Iterable<T> {
+
+    public EventManager events;
+    private T[] array;
     public static final int DEFAULT_CAPACITY = 5;
     public ListUsr() {
         this(DEFAULT_CAPACITY);
     }
     public ListUsr(int capacity) {
+        events = new EventManager("ensure_capacity","add_element","add_elements");
         array = (T[])new Object[capacity];
-    }
-    public ListUsr(T[] array) {
-        this.array = Arrays.copyOf(array,array.length);
-    }
-    public ListUsr(List<T> array) {
-        this.array = (T[]) array.toArray();
     }
     public T getElement(int index) {
         appropriateIndexCheck(index);
@@ -40,37 +38,29 @@ public class ListUsr<T> implements Iterable<T>, Serializable {
     public void ensureCapacity(int capacity){
         if(capacity > array.length) {
             array = Arrays.copyOf(array,capacity);
+            events.notify("ensure_capacity");
         }
     }
 
     public void add(T element){
         array = Arrays.copyOf(array,array.length + 1);
         array[array.length-1] = element;
+        events.notify("add_element");
     }
 
     public void addAll(Collection<T> elements){
-        final int len = array.length;
-        array = Arrays.copyOf(array,array.length + elements.size());
-        for(int i = len;i<array.length;++i){
-            array[i] = elements.iterator().next();//TODO test
+        if(!elements.isEmpty()) {
+            final int len = array.length;
+            array = Arrays.copyOf(array, array.length + elements.size());
+            for (int i = len; i < array.length; ++i) {
+                array[i] = elements.iterator().next();
+            }
+            events.notify("add_elements");
         }
     }
-//    public void sort(Sorter sorter){
-//        sorter.sort(array);
-//    }
     public int getCapacity() {
         return array.length;
     }
-//    public int indexOf(T element) {
-//        int index = -1;
-//        for(int i = 0;i < array.length;++i) {
-//            if(array[i] == element) {
-//                index = i;
-//                break;
-//            }
-//        }
-//        return index;
-//    }
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(getClass().getSimpleName() + "\n");

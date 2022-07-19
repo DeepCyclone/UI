@@ -4,19 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="95d9cab0-3d9e-4402-aef8-ae51351b6ae3" name="Changes" comment="GUI release,logic improvements">
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/3/c/3c8c56407c35e5f5ebbd6c7250a79af8128a13a6" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/5/2/52114fdaa426e9b83a3c5df4e11c4f0ebbcd814b" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/9/a/9aed88f31eac276604c6355c1adcc0bce1f80fd6" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/9/f/9fe84ebb15faf917b7def6236dba604453cc61e0" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/b/f/bfb9453d49af9bc40f5f7a5f034be3c7ef8fa6bf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/e/d/ed67eb178d523a4b3f117dcbe0eda5196367ceec" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/f/7/f7819ea138c33fec28e7e536cb2de34db38fc121" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ispirer/model/Counter.java" afterDir="false" />
+    <list default="true" id="95d9cab0-3d9e-4402-aef8-ae51351b6ae3" name="Changes" comment="logic improvements">
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ispirer/logic/Counter.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/ispirer/model/ListUsr.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ispirer/model/ListUsr.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/ispirer/presentation/GUIRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ispirer/presentation/GUIRenderer.java" afterDir="false" />
     </list>
@@ -62,14 +52,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "aspect.path.notification.shown": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;aspect.path.notification.shown&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="Runner" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.ispirer.runner.Runner" />
@@ -103,7 +93,8 @@
       <workItem from="1658005265007" duration="6337000" />
       <workItem from="1658032705737" duration="3240000" />
       <workItem from="1658057133785" duration="13414000" />
-      <workItem from="1658175840980" duration="4951000" />
+      <workItem from="1658175840980" duration="4985000" />
+      <workItem from="1658256469544" duration="2015000" />
     </task>
     <task id="LOCAL-00001" summary="First build">
       <created>1658011383754</created>
@@ -119,7 +110,14 @@
       <option name="project" value="LOCAL" />
       <updated>1658093884189</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="logic improvements">
+      <created>1658183892586</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1658183892586</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -139,6 +137,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="First build" />
     <MESSAGE value="GUI release,logic improvements" />
-    <option name="LAST_COMMIT_MESSAGE" value="GUI release,logic improvements" />
+    <MESSAGE value="logic improvements" />
+    <option name="LAST_COMMIT_MESSAGE" value="logic improvements" />
   </component>
 </project>

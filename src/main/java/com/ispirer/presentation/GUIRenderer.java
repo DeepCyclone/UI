@@ -1,5 +1,6 @@
 package com.ispirer.presentation;
 
+import com.ispirer.listener.ListEventListener;
 import com.ispirer.model.Counter;
 import com.ispirer.model.ListUsr;
 
@@ -95,6 +96,7 @@ public class GUIRenderer {
         logTextArea.append(b.toString());
         logTextArea.append(Counter.getObjects() + " \n");
         ListUsr<String> userList = new ListUsr<>(3);
+        userList.events.subscribe("add_element",new ListEventListener());
         logTextArea.append("LIST TEST==============\n");
         logTextArea.append("adding string,SIZE = " + userList.getCapacity() + "\n");
         userList.add("T");

@@ -1,23 +1,22 @@
 package com.ispirer.model;
 
+import com.ispirer.listener.EventManager;
+
 import java.io.Serializable;
 import java.util.*;
 
 @SuppressWarnings("unchecked")
 public class ListUsr<T> implements Iterable<T> {
+
+    public EventManager events;
     private T[] array;
     public static final int DEFAULT_CAPACITY = 5;
     public ListUsr() {
         this(DEFAULT_CAPACITY);
     }
     public ListUsr(int capacity) {
+        events = new EventManager("ensure_capacity","add_element","add_elements");
         array = (T[])new Object[capacity];
-    }
-    public ListUsr(T[] array) {
-        this.array = Arrays.copyOf(array,array.length);
-    }
-    public ListUsr(List<T> array) {
-        this.array = (T[]) array.toArray();
     }
     public T getElement(int index) {
         appropriateIndexCheck(index);
@@ -39,12 +38,14 @@ public class ListUsr<T> implements Iterable<T> {
     public void ensureCapacity(int capacity){
         if(capacity > array.length) {
             array = Arrays.copyOf(array,capacity);
+            events.notify("ensure_capacity");
         }
     }
 
     public void add(T element){
         array = Arrays.copyOf(array,array.length + 1);
         array[array.length-1] = element;
+        events.notify("add_element");
     }
 
     public void addAll(Collection<T> elements){
@@ -52,8 +53,9 @@ public class ListUsr<T> implements Iterable<T> {
             final int len = array.length;
             array = Arrays.copyOf(array, array.length + elements.size());
             for (int i = len; i < array.length; ++i) {
-                array[i] = elements.iterator().next();//TODO test
+                array[i] = elements.iterator().next();
             }
+            events.notify("add_elements");
         }
     }
     public int getCapacity() {
